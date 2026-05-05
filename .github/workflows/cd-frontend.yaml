@@ -25,3 +25,4 @@ jobs:
           context: ./hangman-front
           file: ./hangman-front/Dockerfile
           push: true
+          tags: ghcr.io/${{ github.repository }}/hangman-front:1.0
