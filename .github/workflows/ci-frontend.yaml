@@ -1,0 +1,43 @@
+name: Integración Continua
+
+on:
+  push:
+    branch: [ main ]
+    paths: [ 'hangman-front/**']
+  pull_request:
+    branches: [ main ]
+    paths: [ 'hangman-front/**']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Node.js version
+        uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - name: Build
+        working-directory: ./hangman-front
+        run: |
+          npm ci
+          npm run build
+  
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Node.js version
+        uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - name: Unit tests
+        working-directory: ./hangman-front
+        run: |
+          npm ci
+          npm run test
