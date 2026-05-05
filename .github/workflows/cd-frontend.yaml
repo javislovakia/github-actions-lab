@@ -1,0 +1,27 @@
+name: Continuous Delivery
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Login al Docker Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./hangman-front
+          file: ./hangman-front/Dockerfile
+          push: true
