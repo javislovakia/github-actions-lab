@@ -183,3 +183,9 @@ jobs:
 ```
 
 He puesto que el workflow se ejecute manualmente, y además cuando se edite algún archivo de la carpeta hangman-e2e. Como en los workflows anteriores llevamos el código a la máquina virtual donde se ejecute. Después lanzamos la aplicación con docker compose y usamos la Action de cypress para ejecutar los tests. Aquí añado *wait-on* para que los tests no se ejecuten antes de que la aplicación esté lista.
+
+Tras lanzarlo algunas veces y corregir errores en la escritura dentro de los yaml, referencias a carpetas, etc, el workflow se ejecutó correctamente. 
+
+![e2e worklow](./capturas/c4-e2e.png)
+
+![cypress tests](./capturas/c5-tests.png)
