@@ -20,7 +20,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./hangman-e2e
+          working-directory: ./hangman-e2e/e2e
           wait-on: 'http://localhost:8080' 
           wait-on-timeout: 60
           browser: chrome
