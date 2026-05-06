@@ -170,7 +170,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Lanzamos la aplicación con Docker Compose
-        run: docker-compose up -d
+        run: docker compose up -d
         working-directory: ./hangman-front
 
       - name: Cypress run
