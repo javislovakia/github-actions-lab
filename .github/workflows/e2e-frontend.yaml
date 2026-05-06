@@ -1,0 +1,26 @@
+name: Frontend E2E Tests
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'hangman-e2e/**'
+
+jobs:
+  e2e-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v6
+
+      - name: Lanzamos la aplicación con Docker Compose
+        run: docker-compose up -d
+        working-directory: ./hangman-front
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./hangman-e2e
+          wait-on: 'http://localhost:8080' 
+          wait-on-timeout: 60
+          browser: chrome

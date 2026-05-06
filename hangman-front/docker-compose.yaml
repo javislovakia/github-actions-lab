@@ -1,0 +1,9 @@
+services:
+  hangman-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hangman-front-container
+    image: javislovakia/hangman-front:local
+    ports:
+      - "8080:8080"
